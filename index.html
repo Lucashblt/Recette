@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f5f1ea" />
+  <title>Maison Mijotée</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#accueil" aria-label="Maison Mijotée, accueil">
+        <span class="brand-mark" aria-hidden="true">👨‍🍳</span>
+        <span><strong>Maison</strong><em>Mijotée</em></span>
+      </a>
+      <div class="sidebar-label">Organiser</div>
+      <nav class="main-nav" aria-label="Navigation principale">
+        <a href="#accueil" data-route="accueil"><span class="nav-icon">⌂</span> Accueil</a>
+        <a href="#recettes" data-route="recettes"><span class="nav-icon">✦</span> Mes recettes <span class="nav-count" id="recipeCount">8</span></a>
+        <a href="#frigo" data-route="frigo"><span class="nav-icon">▣</span> Mon frigo</a>
+        <a href="#ingredients" data-route="ingredients"><span class="nav-icon">◌</span> Ingrédients</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <a href="#panier" class="basket-link" data-route="panier"><span class="nav-icon">▢</span> Mon panier <span class="nav-count accent" id="cartCount">0</span></a>
+        <div class="weekly-note"><span class="spark">✦</span><div><strong>Cette semaine</strong><small id="weeklySummary">Votre menu est vide</small></div></div>
+        <p class="sidebar-foot">Chaque repas compte.</p>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="breadcrumb"><span>MON CARNET</span><span class="crumb-separator">/</span><strong id="pageTitle">Accueil</strong></div>
+        <div class="top-actions">
+          <button class="icon-button" data-action="open-help" aria-label="Aide">?</button>
+          <button class="profile-button" data-action="profile"><span class="avatar">LH</span><span class="profile-name">Lucas</span><span class="chevron">⌄</span></button>
+        </div>
+      </header>
+      <div id="app" class="page-wrap"></div>
+    </main>
+  </div>
+  <div id="toast" class="toast" role="status"></div>
+  <div id="modalRoot"></div>
+  <script src="app.js"></script>
+</body>
+</html>
