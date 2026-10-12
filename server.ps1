@@ -25,7 +25,7 @@ while ($listener.IsListening) {
       continue
     }
     if ($path -eq '/api/data' -and $context.Request.HttpMethod -eq 'POST') {
-      $reader = New-Object System.IO.StreamReader($context.Request.InputStream, $context.Request.ContentEncoding)
+      $reader = New-Object System.IO.StreamReader($context.Request.InputStream, [System.Text.Encoding]::UTF8)
       $payload = $reader.ReadToEnd() | ConvertFrom-Json
       if ($null -ne $payload.recipes) {
         @{ version = 1; description = 'Catalogue des recettes de Maison Mijotee.'; recipes = @($payload.recipes) } | ConvertTo-Json -Depth 20 | Set-Content (Join-Path $root 'recipes.json') -Encoding UTF8
@@ -46,7 +46,7 @@ while ($listener.IsListening) {
       $types = @{ '.html'='text/html'; '.js'='text/javascript'; '.css'='text/css'; '.json'='application/json'; '.svg'='image/svg+xml' }
       $type = if ($types.ContainsKey($extension)) { $types[$extension] } else { 'application/octet-stream' }
       $bytes = [IO.File]::ReadAllBytes($file)
-      $context.Response.ContentType = $type
+      $context.Response.ContentType = "$type; charset=utf-8"
       $context.Response.ContentLength64 = $bytes.Length
       $context.Response.OutputStream.Write($bytes, 0, $bytes.Length)
       $context.Response.Close()
